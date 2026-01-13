@@ -10,18 +10,20 @@ const Table = ({ products }) => {
             <th>Title</th>
             <th>Brand</th>
             <th>Category</th>
-            <th>Prince</th>
+            <th>Price</th>
             <th>Rating</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>{products[0].title}</td>
-            <td>{products[0].brand}</td>
-            <td>{products[0].category}</td>
-            <td>{products[0].price}</td>
-            <td>{products[0].rating}</td>
-          </tr>
+          {products.map((p) => (
+            <tr key={p.id}>
+              <td>{p.title}</td>
+              <td>{p.brand}</td>
+              <td>{p.category}</td>
+              <td>{p.price}</td>
+              <td>{p.rating}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

@@ -9,3 +9,14 @@ export const getproducts = () => {
     setTimeout(() => resolve(PRODUCTS), 500);
   });
 };
+
+const updateTitle = (id, newTitle) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      PRODUCTS = PRODUCTS.map((p) =>
+        p.id === id ? { ...p, title: newTitle } : p
+      );
+      resolve(true);
+    }, 500);
+  });
+};

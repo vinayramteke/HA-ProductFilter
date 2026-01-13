@@ -1,6 +1,8 @@
 import Table from "./Table";
 
 const Body = () => {
+  const [products, setProducts] = useState([]);
+
   return (
     <div className="body-container">
       <h2>I'm Body.</h2>

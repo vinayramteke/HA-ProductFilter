@@ -1,10 +1,13 @@
-const Table = () => {
+import fetchProducts from "../api/productApi";
+
+const Table = ({ product }) => {
+  console.log(product);
   return (
     <div className="table-body">
       <table>
         <thead>
           <tr>
-            <th>Title</th>
+            <th>{product.title}</th>
             <th>Brand</th>
             <th>Category</th>
             <th>Prince</th>

@@ -1,7 +1,7 @@
 import Table from "./Table";
 import { useEffect, useState } from "react";
 import fetchProducts from "../api/productApi";
-import { seedProducts, getproducts } from "../api/mockapi";
+import { seedProducts, getproducts } from "../api/mockApi";
 
 const Body = () => {
   const [products, setProducts] = useState([]);
@@ -19,7 +19,6 @@ const Body = () => {
 
   return (
     <div className="body-container">
-      <h2>I'm Body.</h2>
       <div className="table-heading-container">
         <h1>Product Filter Table</h1>
       </div>

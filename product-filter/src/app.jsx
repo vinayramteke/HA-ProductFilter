@@ -5,7 +5,6 @@ import Body from "./cpmponents/Body";
 const App = () => {
   return (
     <div>
-      <h2>I'll go inside root.</h2>
       <Body />
     </div>
   );

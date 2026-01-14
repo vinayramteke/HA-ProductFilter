@@ -2,7 +2,7 @@ import Table from "./Table";
 import { useEffect, useState } from "react";
 import fetchProducts from "../api/productApi";
 import { seedProducts, getProducts } from "../api/mockApi";
-
+import Shimmer from "./Shimmer";
 const Body = () => {
   const [products, setProducts] = useState([]);
   const [filters, setFilters] = useState({

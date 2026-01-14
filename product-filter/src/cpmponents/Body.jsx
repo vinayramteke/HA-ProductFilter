@@ -5,6 +5,9 @@ import { seedProducts, getProducts } from "../api/mockApi";
 
 const Body = () => {
   const [products, setProducts] = useState([]);
+  const [filters, setFilters] = useState({
+    brand: "",
+  });
   useEffect(() => {
     loadData();
   }, []);
@@ -15,7 +18,12 @@ const Body = () => {
     const localData = await getProducts();
     setProducts(localData);
   };
-  console.log(products);
+
+  const brands = [...new Set(products.map((p) => p.brand))];
+  const filteredProducts = products.filter((p) => {
+    const brandMatch = filters.brand ? p.brand === filters.brand : true;
+    return brandMatch;
+  });
 
   return (
     <div className="body-container">
@@ -23,7 +31,13 @@ const Body = () => {
         <h1>Product Filter Table</h1>
       </div>
       <div className="table-container">
-        <Table products={products} setProducts={setProducts} />
+        <Table
+          products={filteredProducts}
+          setProducts={setProducts}
+          filters={filters}
+          setFilters={setFilters}
+          brands={brands}
+        />
       </div>
     </div>
   );

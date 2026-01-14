@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { updateTitle, getProducts, deleteProduct } from "../api/mockApi";
 
-const Table = ({ products, setProducts }) => {
+const Table = ({ products, setProducts, filters, setFilters, brands }) => {
   const [editId, setEditId] = useState(null);
   const [newTitle, setNewTitle] = useState("");
 
@@ -35,7 +35,22 @@ const Table = ({ products, setProducts }) => {
         <thead>
           <tr>
             <th>Title</th>
-            <th>Brand</th>
+            <th>
+              Brand
+              <select
+                value={filters.brand}
+                onChange={(e) =>
+                  setFilters({ ...filters, brand: e.target.value })
+                }
+              >
+                <option value="">All</option>
+                {brands.map((b) => (
+                  <option key={b} value={b}>
+                    {b}
+                  </option>
+                ))}
+              </select>
+            </th>
             <th>Category</th>
             <th>Price</th>
             <th>Rating</th>

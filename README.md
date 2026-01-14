@@ -37,5 +37,25 @@ This project is a **Product Filter Table Dashboard** built using **React (Vite)*
 - DummyJSON API
 
 ---
+## Getting Started
+To get a local copy up and running follow these simple example steps.
+
+### Installation
+
+1. Clone the repository
+   
+   ```sh
+   git clone https://github.com/vinayramteke/HA-ProductFilter
+   cd product-filter
+2. Install NPM packages
+   
+   ```sh
+   npm install
+   ```
+3. Run the development server
+   
+    ```sh
+   npm run dev
+   ```
 
 

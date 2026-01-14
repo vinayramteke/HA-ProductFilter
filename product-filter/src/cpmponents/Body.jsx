@@ -55,11 +55,11 @@ const Body = () => {
 
   const filteredProducts = applyFilters(products, filters);
   return (
-    <div className="body-container">
-      <div className="table-heading-container">
+    <div className="p-4">
+      <div className="flex item-centre justify-between mb-4">
         <h1>Product Filter Table</h1>
       </div>
-      <div className="reset-btn-container">
+      <div className="px-4 py-2 text-sm rounded-md bg-gray-800 text-white hover:bg-gray-700">
         <button
           onClick={() => {
             setFilters({
@@ -74,7 +74,7 @@ const Body = () => {
           Reset
         </button>
       </div>
-      <div className="table-container">
+      <div className="rounded-md border border-gray-200 bg-white p-3">
         <Table
           products={filteredProducts}
           setProducts={setProducts}

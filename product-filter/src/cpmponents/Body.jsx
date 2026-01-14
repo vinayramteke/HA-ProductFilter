@@ -25,7 +25,9 @@ const Body = () => {
   const applyFilters = (list, f) => {
     return list.filter((p) => {
       const titleMatch = f.title ? p.title === f.title : true;
-      const brandMatch = f.brand ? p.brand === f.brand : true;
+      const brandMatch = f.brand
+        ? (p.brand ? p.brand : "Generic") === f.brand
+        : true;
       const categoryMatch = f.category ? p.category === f.category : true;
       const priceMatch = f.price ? p.price === f.price : true;
       const ratingMatch = f.rating ? p.rating === f.rating : true;
@@ -38,7 +40,9 @@ const Body = () => {
   const titles = [...new Set(titleList.map((p) => p.title))].sort();
 
   const brandList = applyFilters(products, { ...filters, brand: "" });
-  const brands = [...new Set(brandList.map((p) => p.brand))].sort();
+  const brands = [
+    ...new Set(brandList.map((p) => (p.brand ? p.brand : "Generic"))),
+  ].sort();
 
   const categoryList = applyFilters(products, { ...filters, category: "" });
   const categories = [...new Set(categoryList.map((p) => p.category))].sort();

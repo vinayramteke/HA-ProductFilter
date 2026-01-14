@@ -23,7 +23,7 @@ const Body = () => {
         <h1>Product Filter Table</h1>
       </div>
       <div className="table-container">
-        <Table products={products} />
+        <Table products={products} setProducts={setProducts} />
       </div>
     </div>
   );

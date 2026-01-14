@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { updateTitle, getProducts } from "../api/mockApi";
 
-const Table = ({ products }) => {
+const Table = ({ products, setProducts }) => {
   const [editId, setEditId] = useState(null);
   const [newTitle, setNewTitle] = useState("");
 

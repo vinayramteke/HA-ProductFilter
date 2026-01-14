@@ -6,8 +6,11 @@ const Table = ({
   setProducts,
   filters,
   setFilters,
+  titles,
   brands,
   categories,
+  prices,
+  ratings,
 }) => {
   const [editId, setEditId] = useState(null);
   const [newTitle, setNewTitle] = useState("");
@@ -41,7 +44,22 @@ const Table = ({
       <table>
         <thead>
           <tr>
-            <th>Title</th>
+            <th>
+              Title
+              <select
+                value={filters.title}
+                onChange={(e) =>
+                  setFilters({ ...filters, title: e.target.value })
+                }
+              >
+                <option value="">All</option>
+                {titles.map((t) => (
+                  <option key={t} value={t}>
+                    {t}
+                  </option>
+                ))}
+              </select>
+            </th>
             <th>
               Brand
               <select
@@ -75,8 +93,38 @@ const Table = ({
               </select>
             </th>
 
-            <th>Price</th>
-            <th>Rating</th>
+            <th>
+              Price
+              <select
+                value={filters.price}
+                onChange={(e) =>
+                  setFilters({ ...filters, price: e.target.value })
+                }
+              >
+                <option value="">All</option>
+                {prices.map((p) => (
+                  <option key={p} value={p}>
+                    {p}
+                  </option>
+                ))}
+              </select>
+            </th>
+            <th>
+              Rating
+              <select
+                value={filters.rating}
+                onChange={(e) =>
+                  setFilters({ ...filters, rating: e.target.value })
+                }
+              >
+                <option value="">All</option>
+                {ratings.map((r) => (
+                  <option key={r} value={r}>
+                    {r}
+                  </option>
+                ))}
+              </select>
+            </th>
             <th>Actions</th>
           </tr>
         </thead>

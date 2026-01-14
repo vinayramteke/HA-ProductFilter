@@ -6,8 +6,11 @@ import { seedProducts, getProducts } from "../api/mockApi";
 const Body = () => {
   const [products, setProducts] = useState([]);
   const [filters, setFilters] = useState({
+    title: "",
     brand: "",
     category: "",
+    price: "",
+    rating: "",
   });
   useEffect(() => {
     loadData();
@@ -21,21 +24,34 @@ const Body = () => {
   };
   const applyFilters = (list, f) => {
     return list.filter((p) => {
+      const titleMatch = f.title ? p.title === f.title : true;
       const brandMatch = f.brand ? p.brand === f.brand : true;
       const categoryMatch = f.category ? p.category === f.category : true;
-      return brandMatch && categoryMatch;
+      const priceMatch = f.price ? p.price === f.price : true;
+      const ratingMatch = f.rating ? p.rating === f.rating : true;
+      return (
+        titleMatch && brandMatch && categoryMatch && priceMatch && ratingMatch
+      );
     });
   };
-  const brandList = applyFilters(products, {
-    brand: "",
-    category: filters.category,
-  });
-  const brands = [...new Set(brandList.map((p) => p.brand))];
-  const categoryList = applyFilters(products, {
-    brand: filters.brand,
-    category: "",
-  });
-  const categories = [...new Set(categoryList.map((p) => p.category))];
+  const titleList = applyFilters(products, { ...filters, title: "" });
+  const titles = [...new Set(titleList.map((p) => p.title))].sort();
+
+  const brandList = applyFilters(products, { ...filters, brand: "" });
+  const brands = [...new Set(brandList.map((p) => p.brand))].sort();
+
+  const categoryList = applyFilters(products, { ...filters, category: "" });
+  const categories = [...new Set(categoryList.map((p) => p.category))].sort();
+
+  const priceList = applyFilters(products, { ...filters, price: "" });
+  const prices = [...new Set(priceList.map((p) => p.price))].sort(
+    (a, b) => a - b
+  );
+
+  const ratingList = applyFilters(products, { ...filters, rating: "" });
+  const ratings = [...new Set(ratingList.map((p) => p.rating))].sort(
+    (a, b) => a - b
+  );
 
   const filteredProducts = applyFilters(products, filters);
   return (
@@ -49,8 +65,11 @@ const Body = () => {
           setProducts={setProducts}
           filters={filters}
           setFilters={setFilters}
+          titles={titles}
           brands={brands}
           categories={categories}
+          prices={prices}
+          ratings={ratings}
         />
       </div>
     </div>

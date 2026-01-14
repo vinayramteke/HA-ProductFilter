@@ -20,3 +20,12 @@ export const updateTitle = (id, newTitle) => {
     }, 500);
   });
 };
+
+export const deleteProduct = (id) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      PRODUCTS = PRODUCTS.filter((p) => p.id !== id);
+      resolve(true);
+    }, 500);
+  });
+};

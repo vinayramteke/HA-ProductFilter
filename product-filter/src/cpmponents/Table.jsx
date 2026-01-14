@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { updateTitle, getProducts } from "../api/mockApi";
+import { updateTitle, getProducts, deleteProduct } from "../api/mockApi";
 
 const Table = ({ products, setProducts }) => {
   const [editId, setEditId] = useState(null);
@@ -22,6 +22,13 @@ const Table = ({ products, setProducts }) => {
     setEditId(null);
     setNewTitle("");
   };
+
+  const handleDelete = async (id) => {
+    await deleteProduct(id);
+
+    const updatedList = await getProducts();
+    setProducts(updatedList);
+  };
   return (
     <div className="table-body">
       <table>
@@ -32,6 +39,7 @@ const Table = ({ products, setProducts }) => {
             <th>Category</th>
             <th>Price</th>
             <th>Rating</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -54,12 +62,15 @@ const Table = ({ products, setProducts }) => {
               <td>{p.rating}</td>
               <td>
                 {editId === p.id ? (
-                  <div>
+                  <div className="">
                     <button onClick={() => handleSave(p.id)}>Save</button>
                     <button onClick={handleCancel}>Cancel</button>
                   </div>
                 ) : (
-                  <button onClick={() => handleEdit(p)}>Edit</button>
+                  <div>
+                    <button onClick={() => handleEdit(p)}>Edit</button>
+                    <button onClick={() => handleDelete(p.id)}>Delete</button>
+                  </div>
                 )}
               </td>
             </tr>

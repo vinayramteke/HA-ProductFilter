@@ -1,7 +1,7 @@
 import Table from "./Table";
 import { useEffect, useState } from "react";
 import fetchProducts from "../api/productApi";
-import { seedProducts, getproducts } from "../api/mockApi";
+import { seedProducts, getProducts } from "../api/mockApi";
 
 const Body = () => {
   const [products, setProducts] = useState([]);
@@ -12,7 +12,7 @@ const Body = () => {
   const loadData = async () => {
     const apiData = await fetchProducts();
     seedProducts(apiData);
-    const localData = await getproducts();
+    const localData = await getProducts();
     setProducts(localData);
   };
   console.log(products);

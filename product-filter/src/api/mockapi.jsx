@@ -4,13 +4,13 @@ export const seedProducts = (data) => {
   PRODUCTS = data;
 };
 
-export const getproducts = () => {
+export const getProducts = () => {
   return new Promise((resolve) => {
     setTimeout(() => resolve(PRODUCTS), 500);
   });
 };
 
-const updateTitle = (id, newTitle) => {
+export const updateTitle = (id, newTitle) => {
   return new Promise((resolve) => {
     setTimeout(() => {
       PRODUCTS = PRODUCTS.map((p) =>

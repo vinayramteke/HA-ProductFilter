@@ -34,6 +34,9 @@ const Table = ({
   };
 
   const handleDelete = async (id) => {
+    const ok = window.confirm("Are you sure you want to delete this product?");
+
+    if (!ok) return;
     await deleteProduct(id);
 
     const updatedList = await getProducts();

@@ -55,12 +55,14 @@ const Body = () => {
 
   const filteredProducts = applyFilters(products, filters);
   return (
-    <div className="p-4">
-      <div className="flex item-centre justify-between mb-4">
-        <h1>Product Filter Table</h1>
-      </div>
-      <div className="px-4 py-2 text-sm rounded-md bg-gray-800 text-white hover:bg-gray-700">
+    <div className="min-h-screen bg-gray-50 p-8">
+      <div className="flex items-center justify-between mb-6">
+        <h1 className="text-3xl font-bold text-gray-900 tracking-tight">
+          Product Filter Table
+        </h1>
+
         <button
+          className="px-5 py-2.5 text-sm font-medium text-white bg-gray-800 rounded-lg hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 transition-all duration-200 shadow-sm"
           onClick={() => {
             setFilters({
               title: "",

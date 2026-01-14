@@ -157,8 +157,10 @@ const Table = ({
                 {p.brand ? p.brand : <div>Generic</div>}
               </td>
               <td className="px-3 py-2 border border-gray-200">{p.category}</td>
-              <td className="px-3 py-2 border border-gray-200">{p.price}</td>
-              <td className="px-3 py-2 border border-gray-200">{p.rating}</td>
+              <td className="px-3 py-2 border border-gray-200">${p.price}</td>
+              <td className="px-3 py-2 border border-gray-200">
+                ⭐{p.rating}/5
+              </td>
 
               <td className="px-3 py-2 border border-gray-200">
                 {editId === p.id ? (

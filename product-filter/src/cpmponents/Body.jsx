@@ -42,8 +42,8 @@ const Body = () => {
         ? (p.brand ? p.brand : "Generic") === f.brand
         : true;
       const categoryMatch = f.category ? p.category === f.category : true;
-      const priceMatch = f.price ? p.price === f.price : true;
-      const ratingMatch = f.rating ? p.rating === f.rating : true;
+      const priceMatch = f.price ? p.price === Number(f.price) : true;
+      const ratingMatch = f.rating ? p.rating === Number(f.rating) : true;
       return (
         titleMatch && brandMatch && categoryMatch && priceMatch && ratingMatch
       );

@@ -7,6 +7,7 @@ const Body = () => {
   const [products, setProducts] = useState([]);
   const [filters, setFilters] = useState({
     brand: "",
+    category: "",
   });
   useEffect(() => {
     loadData();
@@ -18,13 +19,25 @@ const Body = () => {
     const localData = await getProducts();
     setProducts(localData);
   };
-
-  const brands = [...new Set(products.map((p) => p.brand))];
-  const filteredProducts = products.filter((p) => {
-    const brandMatch = filters.brand ? p.brand === filters.brand : true;
-    return brandMatch;
+  const applyFilters = (list, f) => {
+    return list.filter((p) => {
+      const brandMatch = f.brand ? p.brand === f.brand : true;
+      const categoryMatch = f.category ? p.category === f.category : true;
+      return brandMatch && categoryMatch;
+    });
+  };
+  const brandList = applyFilters(products, {
+    brand: "",
+    category: filters.category,
   });
+  const brands = [...new Set(brandList.map((p) => p.brand))];
+  const categoryList = applyFilters(products, {
+    brand: filters.brand,
+    category: "",
+  });
+  const categories = [...new Set(categoryList.map((p) => p.category))];
 
+  const filteredProducts = applyFilters(products, filters);
   return (
     <div className="body-container">
       <div className="table-heading-container">
@@ -37,6 +50,7 @@ const Body = () => {
           filters={filters}
           setFilters={setFilters}
           brands={brands}
+          categories={categories}
         />
       </div>
     </div>

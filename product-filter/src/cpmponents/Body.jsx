@@ -12,15 +12,24 @@ const Body = () => {
     price: "",
     rating: "",
   });
+
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     loadData();
   }, []);
 
   const loadData = async () => {
-    const apiData = await fetchProducts();
-    seedProducts(apiData);
-    const localData = await getProducts();
-    setProducts(localData);
+    try {
+      setLoading(true);
+
+      const apiData = await fetchProducts();
+      seedProducts(apiData);
+
+      const localData = await getProducts();
+      setProducts(localData);
+    } finally {
+      setLoading(false);
+    }
   };
   const applyFilters = (list, f) => {
     return list.filter((p) => {
@@ -80,19 +89,23 @@ const Body = () => {
           Reset
         </button>
       </div>
-      <div className="rounded-md border border-gray-200 bg-white p-3">
-        <Table
-          products={filteredProducts}
-          setProducts={setProducts}
-          filters={filters}
-          setFilters={setFilters}
-          titles={titles}
-          brands={brands}
-          categories={categories}
-          prices={prices}
-          ratings={ratings}
-        />
-      </div>
+      {loading ? (
+        <Shimmer />
+      ) : (
+        <div className="rounded-md border border-gray-200 bg-white p-3">
+          <Table
+            products={filteredProducts}
+            setProducts={setProducts}
+            filters={filters}
+            setFilters={setFilters}
+            titles={titles}
+            brands={brands}
+            categories={categories}
+            prices={prices}
+            ratings={ratings}
+          />
+        </div>
+      )}
     </div>
   );
 };

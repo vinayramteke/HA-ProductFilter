@@ -14,6 +14,8 @@ const Body = () => {
   });
 
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
   useEffect(() => {
     loadData();
   }, []);
@@ -27,6 +29,8 @@ const Body = () => {
 
       const localData = await getProducts();
       setProducts(localData);
+    } catch (err) {
+      setError(err?.message || "failed to load");
     } finally {
       setLoading(false);
     }
@@ -89,6 +93,11 @@ const Body = () => {
           Reset
         </button>
       </div>
+      {error ? (
+        <div className="mb-3 rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+          {error}
+        </div>
+      ) : null}
       {loading ? (
         <Shimmer />
       ) : (

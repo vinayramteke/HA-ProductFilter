@@ -138,7 +138,73 @@ const Table = ({
             </th>
           </tr>
         </thead>
-        <tbody>
+        {products.length === 0 ? (
+          <h2 className="text-xl text-gray-500 mt-10">No Product found</h2>
+        ) : (
+          <tbody>
+            {products.map((p) => (
+              <tr key={p.id} className="hover:bg-gray-50">
+                <td className="px-3 py-2 border border-gray-200">
+                  {" "}
+                  {editId === p.id ? (
+                    <input
+                      className="w-full border border-gray-300 rounded-md px-2 py-1"
+                      value={newTitle}
+                      onChange={(e) => setNewTitle(e.target.value)}
+                    />
+                  ) : (
+                    p.title
+                  )}
+                </td>
+                <td className="px-3 py-2 border border-gray-200">
+                  {p.brand ? p.brand : <div>Generic</div>}
+                </td>
+                <td className="px-3 py-2 border border-gray-200">
+                  {p.category}
+                </td>
+                <td className="px-3 py-2 border border-gray-200">${p.price}</td>
+                <td className="px-3 py-2 border border-gray-200">
+                  ⭐{p.rating}/5
+                </td>
+
+                <td className="px-3 py-2 border border-gray-200">
+                  {editId === p.id ? (
+                    <div className="flex gap-2">
+                      <button
+                        className="px-3 py-1 rounded-md bg-green-600 text-white hover:bg-green-500"
+                        onClick={() => handleSave(p.id)}
+                      >
+                        Save
+                      </button>
+                      <button
+                        className="px-3 py-1 rounded-md bg-gray-200 hover:bg-gray-300"
+                        onClick={handleCancel}
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="flex gap-2">
+                      <button
+                        className="px-3 py-1 rounded-md bg-blue-600 text-white hover:bg-blue-500"
+                        onClick={() => handleEdit(p)}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        className="px-3 py-1 rounded-md bg-red-600 text-white hover:bg-red-500"
+                        onClick={() => handleDelete(p.id)}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        )}
+        {/* <tbody>
           {products.map((p) => (
             <tr key={p.id} className="hover:bg-gray-50">
               <td className="px-3 py-2 border border-gray-200">
@@ -197,7 +263,7 @@ const Table = ({
               </td>
             </tr>
           ))}
-        </tbody>
+        </tbody> */}
       </table>
     </div>
   );

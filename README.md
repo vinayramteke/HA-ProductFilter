@@ -23,6 +23,7 @@ This project is a **Product Filter Table Dashboard** built using **React (Vite)*
 - Filters inside table header for:
   - Title, Brand, Category, Price, Rating
   - ✅ Dynamic dropdown values based on other selected filters
+  - Displays a “No product found” message when selected filters return zero results
 - Reset filters button
 - Loading shimmer 
 - Error handling

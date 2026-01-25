@@ -139,7 +139,16 @@ const Table = ({
           </tr>
         </thead>
         {products.length === 0 ? (
-          <h2 className="text-xl text-gray-500 mt-10">No Product found</h2>
+          <tbody>
+            <tr>
+              <td
+                colSpan="6"
+                className="text-center py-10 text-xl text-gray-500 border border-gray-200"
+              >
+                No Product found
+              </td>
+            </tr>
+          </tbody>
         ) : (
           <tbody>
             {products.map((p) => (
